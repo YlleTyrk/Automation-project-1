@@ -10,10 +10,10 @@ describe('Section 1: Functional tests', () => {
 
     it('User can use only same both first and validation passwords', ()=>{
         // Add test steps for filling in only mandatory fields
-        cy.get('input[data-testid="user"]').type('MesiMagus')
+        cy.get('[data-testid="user"]').type('MesiMagus')
         cy.get('#email').type('maasikas@mail.ee')
         cy.get('[data-cy="name"]').type('Magus')
-        cy.get('#lastName').type('Maasikas')
+        cy.get('[data-testid="lastNameTestId"]').type('Maasikas')
         cy.get('[data-testid="phoneNumberTestId"]').type('555666222')
         // Type confirmation password which is different from first password
         cy.get('#password').type('marjad')
@@ -28,10 +28,10 @@ describe('Section 1: Functional tests', () => {
         cy.get('#password_error_message').should('be.visible')
         // Change the test, so the passwords would match
         cy.get('#confirm').click()
-        cy.get('#confirm').type('marjad')
+        cy.get('#confirm').clear().type('marjad')
         cy.get('h2').contains('Password').click()
         // Add assertion, that error message is not visible anymore
-        cy.get('#password_error_message').should('have.css', 'display', 'block')
+        cy.get('#password_error_message').should('have.css', 'display', 'none')
         // Add assertion, that submit button is now enabled
         cy.get('h2').contains('Password').click()
         cy.get('.submit_button').should('be.enabled')
