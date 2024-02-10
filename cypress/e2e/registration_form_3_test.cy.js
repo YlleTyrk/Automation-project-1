@@ -26,3 +26,9 @@ Task list:
     * mandatory fields are absent + corresponding assertions (try using function)
     * add file functionlity(google yourself for solution!)
  */
+
+it('User can submit form with all fields added', ()=>{
+    cy.get('#name').type('Kevin')
+    cy.get('input[name="email"]').type('kevin@mail.com')
+    cy.get('#country').select('Estonia')
+})
